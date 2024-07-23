@@ -18,21 +18,21 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             color: #333;
             position: relative; /* For positioning the button and icons */
+            overflow: hidden; /* Prevent scrollbars */
         }
         .container {
             text-align: center;
             background: #ffffff;
-            padding: 1.5rem;
+            padding: 2rem;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             max-width: 90%;
-            width: 600px;
-            margin: 1rem;
+            width: 500px;
         }
         h1 {
             font-size: 2rem;
             margin-bottom: 1rem;
-            color: #333;
+            color: #007BFF;
         }
         p {
             font-size: 1rem;
@@ -57,10 +57,11 @@
             color: #ffffff;
             border: none;
             border-radius: 4px;
-            padding: 0.5rem 1rem;
-            font-size: 0.9rem;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
             cursor: pointer;
             text-align: center;
+            transition: background-color 0.3s;
         }
         .button:hover {
             background-color: #0056b3;
@@ -82,14 +83,52 @@
             color: #0056b3;
         }
         /* Responsive Styles */
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
+            .container {
+                padding: 1.5rem;
+                width: 90%;
+            }
             h1 {
                 font-size: 1.5rem;
             }
             p {
                 font-size: 0.9rem;
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            .button {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+                top: 0.5rem;
+                right: 0.5rem;
+            }
+            .socials {
+                bottom: 0.5rem;
+                right: 0.5rem;
+                font-size: 1.2rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .container {
+                padding: 1rem;
+                width: 95%;
+            }
+            h1 {
+                font-size: 1.2rem;
+            }
+            p {
+                font-size: 0.8rem;
                 padding-left: 0.5rem;
                 padding-right: 0.5rem;
+            }
+            .button {
+                padding: 0.5rem 0.75rem;
+                font-size: 0.8rem;
+            }
+            .socials {
+                bottom: 0.5rem;
+                right: 0.5rem;
+                font-size: 1rem;
             }
         }
     </style>

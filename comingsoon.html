@@ -25,10 +25,11 @@
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             max-width: 90%;
-            width: 500px;
+            width: 90%;
+            box-sizing: border-box;
         }
         .coming-soon h1 {
-            font-size: 2.5rem;
+            font-size: 2rem;
             margin-bottom: 1rem;
             color: #007BFF;
         }
@@ -36,6 +37,7 @@
             font-size: 1rem;
             margin-bottom: 1.5rem;
             color: #666;
+            line-height: 1.5;
         }
         .button {
             background-color: #007BFF;
@@ -53,14 +55,32 @@
             background-color: #0056b3;
         }
         /* Responsive Styles */
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
             .coming-soon h1 {
-                font-size: 1.8rem;
+                font-size: 1.5rem;
             }
             .coming-soon p {
                 font-size: 0.9rem;
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            .button {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .coming-soon h1 {
+                font-size: 1.2rem;
+            }
+            .coming-soon p {
+                font-size: 0.8rem;
                 padding-left: 0.5rem;
                 padding-right: 0.5rem;
+            }
+            .button {
+                padding: 0.5rem 0.75rem;
+                font-size: 0.8rem;
             }
         }
     </style>
@@ -69,7 +89,7 @@
     <div class="coming-soon">
         <h1>Unavailable</h1>
         <p>We're working hard to get our website ready. Stay tuned for updates!</p>
-        <!-- <a href="index.html" class="button">Home</a> -->
+        <!-- <a href="mailto:info@bay2bayfoundation.org" class="button">Contact Us</a> -->
     </div>
 </body>
 </html>
