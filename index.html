@@ -1,162 +1,375 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bay2Bay Foundation</title>
-    <link rel="icon" href="favicon.ico" type="image/x-icon"/>
-    <!-- Font Awesome CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f4f4f4;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: #333;
-            position: relative; /* For positioning the button and icons */
-            overflow: hidden; /* Prevent scrollbars */
-        }
-        .container {
-            text-align: center;
-            background: #ffffff;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            max-width: 90%;
-            width: 500px;
-        }
-        .img{
-            max-width: 50%;
-            height: auto;
-            /* padding-bottom: 0px; */
-        }
-        h1 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            color: #3C405A;
-        }
-        p {
-            font-size: 1rem;
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-            color: #666;
-        }
-        a {
-            text-decoration: none;
-            font-weight: bold;
-            color: #3C405A;
-        }
-        a:hover {
-            /* text-decoration: underline; */
-        }
-        /* Button Styles */
-        .button {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background-color: #3C405A;
-            color: #ffffff;
-            border: none;
-            border-radius: 4px;
-            padding: 0.75rem 1.5rem;
-            font-size: 1rem;
-            cursor: pointer;
-            text-align: center;
-            transition: background-color 0.3s;
-        }
-        .button:hover {
-            background-color: rgba(0, 87, 179, 0.701);
-        }
-        /* Social Media Icons Styles */
-        .socials {
-            position: fixed;
-            bottom: 1rem;
-            right: 1rem;
-            display: flex;
-            gap: 1rem;
-        }
-        .socials a {
-            color: #3C405A;
-            font-size: 1.5rem;
-            transition: color 0.3s;
-        }
-        .socials a:hover {
-            color: #0056b3;
-        }
-        /* Responsive Styles */
-        @media (max-width: 768px) {
-            .container {
-                padding: 1.5rem;
-                width: 90%;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bay2Bay Foundation</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    html, body {
+      overflow-x: hidden;
+      padding: 0;
+      margin: 0;
+      width: 100%;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #333;
+      background: #f9f9f9;
+    }
+    header {
+      background: white;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      padding: 0.5rem 1.25rem;
+      height: 60px;
+      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+    }
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: none;
+      margin: 0 2rem;
+      height: 100%;
+    }
+    .logo {
+      height: 100%;
+      max-height: 60px;
+      transition: all 0.3s ease-in-out;
+    }
+    header.sticky .logo {
+      width: 40px;
+    }
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    nav a {
+      text-decoration: none;
+      color: #3C405A;
+      font-weight: 600;
+    }
+    .nav-button {
+      display: inline-flex;
+      align-items: center;
+      background: #3C405A;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+    }
+    .hamburger {
+      display: none;
+      font-size: 1.75rem;
+      cursor: pointer;
+      color: #3C405A;
+      background: transparent;
+      z-index: 1002;
+    }
+    @media (max-width: 768px) {
+      .hamburger {
+        display: flex;
+      }
+
+      nav {
+        position: fixed;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        height: 0;
+        overflow: hidden;
+        background: white;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+        padding: 0;
+        transition: height 0.4s ease-in-out;
+        z-index: 1000;
+      }
+
+      nav.open {
+        height: calc(100vh - 60px);
+        padding: 2rem 1rem;
+      }
+
+      nav a {
+        font-size: 1.2rem;
+      }
+
+      .nav-button {
+        margin-top: 1rem;
+      }
+    }
+    main {
+      width: 100%;
+      margin: 2rem 0;
+      padding: 0 2rem;
+      padding-top: 3rem;
+    }
+    section {
+      margin-bottom: 3rem;
+      opacity: 0;
+      animation: fadeInUp 0.8s ease forwards;
+      animation-delay: 0.3s;
+    }
+    section:not(.hero) {
+      border-radius: 12px;
+      padding: 2.5rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    }
+
+    section:nth-of-type(even):not(.hero) {
+      background: linear-gradient(135deg, #ffffff, #f4f4f9);
+    }
+
+    section:nth-of-type(odd):not(.hero) {
+      background: linear-gradient(135deg, #eef4f8, #dfe7ec);
+    }
+    .hero {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: url('background.png') center/cover no-repeat;
+        position: relative;
+        text-align: center;
+        color: white;
+        margin-bottom: 2rem;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      margin: 0.5rem 0;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 500px;
+    }
+    .cta-button {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.75rem 1.5rem;
+      background-color: #3C405A;
+      color: #fff;
+      border-radius: 4px;
+      text-decoration: none;
+    }
+    footer {
+      text-align: center;
+      padding: 3rem 1rem 2rem;
+      background: #e0e0e0;
+      border-top-left-radius: 40px;
+      border-top-right-radius: 40px;
+    }
+    footer .socials {
+      margin-bottom: 1rem;
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+    footer p {
+      color: #777;
+      font-size: 0.9rem;
+    }
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .contact-form input,
+    .contact-form textarea {
+      padding: 0.75rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+    .contact-form button {
+      padding: 0.75rem;
+      background-color: #3C405A;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.2s ease-in-out;
+    }
+    .contact-form button:hover {
+      background-color: #2b2e4a;
+    }
+    .section-content {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+    }
+
+    .section-content i {
+      flex-shrink: 0;
+      font-size: 2rem;
+      color: #3C405A;
+    }
+    h2 i {
+      margin-right: 0.5rem;
+    }
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    nav a:hover,
+    .nav-button:hover,
+    .cta-button:hover {
+      color: #0056b3;
+      transform: scale(1.05);
+      transition: all 0.2s ease-in-out;
+    }
+    .hero-logo {
+      max-width: 300px;
+      height: auto;
+      margin-bottom: 1rem;
+    }
+  </style>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const sections = document.querySelectorAll("main section");
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.animationPlayState = 'running';
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      sections.forEach(section => {
+        section.style.animationPlayState = 'paused';
+        observer.observe(section);
+      });
+
+      document.querySelectorAll('nav a').forEach(link => {
+        link.addEventListener('click', () => {
+          const nav = document.getElementById('navMenu');
+          const icon = document.querySelector('.hamburger');
+          nav.classList.remove('open');
+          icon.classList.remove('active');
+        });
+      });
+
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            const headerOffset = 80;
+            const elementPosition = target.getBoundingClientRect().top + window.scrollY;
+            const offsetPosition = elementPosition - headerOffset;
+
+            const startPosition = window.scrollY;
+            const distance = offsetPosition - startPosition;
+            const duration = 1000;
+            let start = null;
+
+            function step(timestamp) {
+              if (!start) start = timestamp;
+              const progress = timestamp - start;
+              const easeInOutCubic = t => t < 0.5
+                ? 4 * t * t * t
+                : 1 - Math.pow(-2 * t + 2, 3) / 2;
+              const run = easeInOutCubic(Math.min(progress / duration, 1)) * distance + startPosition;
+              window.scrollTo(0, run);
+              if (progress < duration) {
+                requestAnimationFrame(step);
+              }
             }
-            h1 {
-                font-size: 1.5rem;
-            }
-            p {
-                font-size: 0.9rem;
-                padding-left: 1rem;
-                padding-right: 1rem;
-            }
-            .button {
-                padding: 0.5rem 1rem;
-                font-size: 0.9rem;
-                top: 0.5rem;
-                right: 0.5rem;
-            }
-            .socials {
-                bottom: 0.5rem;
-                right: 0.5rem;
-                font-size: 1.2rem;
-            }
-        }
-        @media (max-width: 480px) {
-            .container {
-                padding: 1rem;
-                width: 95%;
-            }
-            h1 {
-                font-size: 1.2rem;
-            }
-            p {
-                font-size: 0.8rem;
-                padding-left: 0.5rem;
-                padding-right: 0.5rem;
-            }
-            .button {
-                padding: 0.5rem 0.75rem;
-                font-size: 0.8rem;
-            }
-            .socials {
-                bottom: 0.5rem;
-                right: 0.5rem;
-                font-size: 1rem;
-            }
-        }
-    </style>
+            requestAnimationFrame(step);
+          }
+        });
+      });
+    });
+
+    function toggleNav() {
+      const nav = document.getElementById('navMenu');
+      const icon = document.querySelector('.hamburger');
+      nav.classList.toggle('open');
+      icon.classList.toggle('active');
+    }
+  </script>
 </head>
 <body>
-    <!-- Button Link -->
-    <a href="https://calendar.app.google/LzP37BqUN5mbG3mH7" target="_blank" class="button">Schedule an Appoinment</a>
-    
-    <div class="container">
-        <img class="img" src="navy.svg" alt="Bay2Bay Foundation Logo">
-        <h1>Bay2Bay Foundation</h1>
-        <!-- <p>We are working hard to build our website. In the meantime, here's a little about us:</p> -->
-        <p>Bay2Bay Foundation is a 501(c)(3) nonprofit organization that provides free personalized tutoring services for K-12 students in the Bay Area. It offers highly interactive instructional modules that center on real-world application. We plan to launch during the 2024-25 academic school year. Being a nonprofit organization, Bay2Bay Education is made possible by volunteers who assist in administrative work, the interpretation of California State Education Standards, the creation of curriculum, and other aspects of the nonprofit.</p>
-        <p>Questions? Contact us @ <a href="mailto:info@bay2bay.org">info@bay2bay.org</a></p>
+  <header>
+    <div class="nav-container">
+      <a href="#top"><img src="navy.svg" alt="Bay2Bay Foundation Logo" class="logo"></a>
+      <div class="hamburger" onclick="toggleNav()">☰</div>
+      <nav id="navMenu">
+        <a href="#about">About</a>
+        <a href="#tutoring">Tutoring</a>
+        <a href="#volunteer">Volunteer</a>
+        <a href="#contact">Contact</a>
+        <a href="login.html" class="nav-button">Login</a>
+      </nav>
     </div>
+  </header>
 
-    <!-- Social Media Links -->
+  <main>
+    <section class="hero" id="top">
+      <img src="transparentlogo.png" alt="Bay2Bay Foundation Logo" class="hero-logo">
+      <h1>Bay2Bay Foundation</h1>
+      <p>Free, personalized tutoring for K-12 students in the Bay Area.</p>
+      <a href="https://calendar.app.google/LzP37BqUN5mbG3mH7" target="_blank" class="cta-button">Schedule an Appointment</a>
+    </section>
+
+    <section id="about">
+      <h2><i class="fas fa-globe"></i> About Us</h2>
+      <div class="section-content">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed gravida libero ac felis suscipit, in commodo turpis iaculis. Quisque sed ipsum a justo laoreet iaculis. Mauris non sem ac lacus convallis fermentum. In vel justo augue. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+      </div>
+    </section>
+
+    <section id="tutoring">
+      <h2><i class="fas fa-book-open"></i> Our Tutoring Program</h2>
+      <div class="section-content">
+        <p>Phasellus at mattis elit. Donec facilisis libero in odio tristique, non pulvinar est lacinia. Integer nec sem vitae libero dapibus aliquam. Nullam at porta velit. Nam laoreet ipsum ut metus volutpat, in convallis leo elementum. Cras at libero ut turpis pulvinar ultricies.</p>
+      </div>
+    </section>
+
+    <section id="volunteer">
+      <h2><i class="fas fa-hands-helping"></i> Volunteer</h2>
+      <div class="section-content">
+        <p>Aliquam erat volutpat. Cras feugiat ex sed felis porta, a efficitur sapien placerat. Curabitur non purus porttitor, sodales orci sit amet, porta lorem. Etiam nec lectus vitae quam laoreet ultricies. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.</p>
+      </div>
+      <a href="https://calendar.app.google/LzP37BqUN5mbG3mH7" target="_blank" class="cta-button">Book a Consultation</a>
+    </section>
+
+    <section id="contact">
+      <h2><i class="fas fa-envelope"></i> Contact Us</h2>
+      <div class="section-content">
+        <p>Suspendisse potenti. Aenean a felis purus. Nullam cursus ante non est feugiat, vel varius enim luctus. Etiam tincidunt leo vel nisi bibendum, vel fermentum magna sagittis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer porta ligula nec est posuere, a feugiat lorem scelerisque.</p>
+      </div>
+      <p>Email us at <a href="mailto:info@bay2bay.org">info@bay2bay.org</a></p>
+    </section>
+  </main>
+
+  <footer>
     <div class="socials">
-        <a href="comingsoon.html" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-        <a href="comingsoon.html" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-        <a href="comingsoon.html" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-        <a href="https://instagram.com/bay2bayfdn" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="comingsoon.html" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="comingsoon.html" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+      <a href="comingsoon.html" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      <a href="https://instagram.com/bay2bayfdn" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
     </div>
+    <p>&copy; 2025 Bay2Bay Foundation</p>
+  </footer>
 </body>
 </html>
